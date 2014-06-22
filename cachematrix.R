@@ -7,11 +7,11 @@
 
 makeCacheMatrix <- function(x = matrix()) { 
 	 
-	  inv <- NULL	
+	inv <- NULL	
 				
         set <- function(p) {
                 x <<- p				
-		    inv <<- NULL			##prior to computing the inverse, the default value is NULL
+	        inv <<- NULL			##prior to computing the inverse, the default value is NULL
         }
 
         get <- function() x	
@@ -32,20 +32,20 @@ makeCacheMatrix <- function(x = matrix()) {
 
 cacheSolve <- function(y) {
        
-	  inv <- y$getinv()				##reading the cache
+	inv <- y$getinv()				##reading the cache
 		
         if(!is.null(inv)) {				##checking if the cache is empty
                 message("getting cached data...")	
                 return(inv)				##returning the inverse if it is found in the cache and exiting the function
         }
 	  
-	  message("no cached data, computing...")	
+	message("no cached data, computing...")	
 	
-	  mat<-y$get()					##accessing the matrix
+	mat<-y$get()					##accessing the matrix
 
         inv <- solve(mat)				##computing the inverse of the matrix
 
         y$setinv(inv)					##caching the inverse 
 
-	  inv							##returning the inverse after computing and caching
+	inv						##returning the inverse after computing and caching
 }
